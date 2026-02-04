@@ -3,8 +3,10 @@
 @tool
 extends EditorProperty
 
+## The main vertical container.
 var vbox := VBoxContainer.new()
 
+## The horizontal container for the minimum and maximum values.
 var min_max_hbox := HBoxContainer.new()
 
 ## The RangeSlider instance.
@@ -16,17 +18,18 @@ var min_spin_slider := EditorSpinSlider.new()
 ## The SpinBox with a slider for the maximum value (y)
 var max_spin_slider := EditorSpinSlider.new()
 
+## Margins for handle spaces.
 var margin_container := MarginContainer.new()
 
 
 # Guard against internal updates when syncing state.
 var _is_updating := false
+
 # Whether to treat the values as radians and display them as degrees.
 var _radians_as_degrees := false
 
 
 # Variables to store setup data from the inspector plugin.
-
 var _exp_edit: bool
 var _allow_greater: bool
 var _allow_lesser: bool
@@ -34,8 +37,6 @@ var _suffix: String
 var _min_value: float
 var _max_value: float
 var _step: float
-
-
 
 ## Sets up the property editor with the given parameters from the inspector plugin.
 func setup(p_min: float, p_max: float, p_step: float, p_exp: bool, p_allow_greater: bool, p_allow_lesser: bool, p_hide_slider: bool, p_suffix: String, p_radians_as_degrees: bool) -> void:
@@ -80,7 +81,6 @@ func _ready() -> void:
 	_setup_spin_sliders()
 	_connect_signals_and_focus()
 
-
 func _build_ui_tree() -> void:
 	add_child(vbox)
 	set_bottom_editor(vbox)
@@ -91,7 +91,6 @@ func _build_ui_tree() -> void:
 	margin_container.add_child(min_max_hbox)
 	min_max_hbox.add_child(min_spin_slider)
 	min_max_hbox.add_child(max_spin_slider)
-
 
 func _configure_layout() -> void:
 	vbox.add_theme_constant_override("separation", 4)
@@ -153,7 +152,6 @@ func _update_property() -> void:
 	
 	var current_value: Vector2 = get_edited_object().get(get_edited_property())
 	
-	# The actual property clamping and update is deferred by the debounce timer.
 	var value_for_slider: Vector2 = current_value
 	if _radians_as_degrees:
 		value_for_slider = Vector2(rad_to_deg(current_value.x), rad_to_deg(current_value.y))

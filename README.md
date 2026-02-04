@@ -8,10 +8,11 @@
 </div>
 
 ## What is it ?
+
 A Godot editor plugin that provides a `RangeSlider` control for `Vector2` properties in the editor inspector when using `@export_custom(PROPERTY_HINT_RANGE, ...)`.
 This feature is a close copy of the `MinMaxPropertyEditor` present in  [ParticleProcessMaterial](https://github.com/godotengine/godot/blob/master/editor/scene/particle_process_material_editor_plugin.cpp) but not exposed in the editor, so i tried as best as i could to convert the cpp code to GDScript and make it seamlessly integrate with the editor.
 
-<img src="docs/resize_bar_by_handle_drag.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle"  width="640">
+<img src="docs/showing_off.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle"  width="640">
 
 ## What is it for ?
 
@@ -98,7 +99,7 @@ extends Node2D
 ### Editor Usage
 
 You can also use `RangeSlider` as a Control node like you would ![Horizontal Slider Icon](https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/editor/icons/HSlider.svg)`HSlider` or ![Horizontal Slider Icon](https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/editor/icons/VSlider.svg)`VSlider`.
-When the plugin is enabled, ![Horizontal Range Slider Icon](addons/range_slider/horizontal/HRangeSlider.svg)`HRangeSlider` and ![Vertical Range Slider Icon](addons/range_slider/vertical/VRangeSlider.svg)`VRangeSlider` are automatically added as nodes inheriting from the RangeSlider class (which itself inherits from `Range`).
+When the plugin is enabled, ![Horizontal Range Slider Icon](addons/range_slider/horizontal/HRangeSlider.svg)`HRangeSlider` and ![Vertical Range Slider Icon](addons/range_slider/vertical/VRangeSlider.svg)`VRangeSlider` are automatically added as nodes inheriting from the `RangeSlider` class (which itself inherits from `Range`).
 The handles and styleboxes are exported properties because making the styleboxes and icons part of the theme does not expose them in the inspector when selecting a RangeSlider node, so exported properties are used instead.
 
 
@@ -120,4 +121,3 @@ Check out the godot docs for [PROPERTY_HINT_RANGE](https://docs.godotengine.org/
 	-   `degrees`: Displays a `°` suffix. Use this if your value is already in degrees.
 	-   `hide_slider`: This keyword will prevent the plugin from activating, showing the default Godot `Vector2` editor.
 	-   `hide_control`: Same as hide_slider, the plugin will not activate.
-

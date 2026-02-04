@@ -125,7 +125,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_7l23u")
-example_range = Vector2(32, 62.699997)
+example_range = Vector2(24.3, 68.89998)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=18221924]
 visible = false
