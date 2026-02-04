@@ -1,0 +1,342 @@
+[gd_scene format=3 uid="uid://bkvdyg0rveocm"]
+
+[ext_resource type="Script" uid="uid://d22erv273mx2o" path="res://addons/range_slider/example/test_range_slider.gd" id="1_hk2d6"]
+[ext_resource type="Script" uid="uid://b5hd6r47v4w5q" path="res://addons/range_slider/vertical/v_range_slider.gd" id="3_7l23u"]
+[ext_resource type="Script" uid="uid://doofp6g5otkxk" path="res://addons/range_slider/horizontal/h_range_slider.gd" id="3_y6iue"]
+[ext_resource type="Texture2D" uid="uid://diu5pjc685lmf" path="res://addons/range_slider/vertical/RangeSliderDown.svg" id="4_cx5ea"]
+[ext_resource type="Texture2D" uid="uid://ixe81eiob7mm" path="res://addons/range_slider/vertical/RangeSliderUp.svg" id="5_c5lgj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vob87"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tiq4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyo0u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5gyp"]
+
+[sub_resource type="Theme" id="Theme_y6iue"]
+HRangeSlider/styles/grabber_area = SubResource("StyleBoxFlat_vob87")
+HRangeSlider/styles/grabber_area_hover = SubResource("StyleBoxLine_tiq4b")
+HRangeSlider/styles/grabber_area_pressed = SubResource("StyleBoxFlat_tyo0u")
+HRangeSlider/styles/slider = SubResource("StyleBoxFlat_e5gyp")
+
+[sub_resource type="GDScript" id="GDScript_7l23u"]
+script/source = "extends ColorRect
+
+@export_custom(PROPERTY_HINT_RANGE, \"0,100,0.1\") var example_range: Vector2 = Vector2(25.0, 75.0)
+"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4w63l"]
+particle_flag_disable_z = true
+angle_min = -47.39999
+angle_max = 319.00003
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -68.74
+linear_accel_max = 0.74999774
+radial_accel_min = 25.279997
+radial_accel_max = 74.159996
+tangential_accel_min = -50.72
+tangential_accel_max = 38.58
+
+[sub_resource type="DPITexture" id="DPITexture_o01lj"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"16\"><path fill=\"#fff\" d=\"m10 2-9.99983819 6 9.99983819 6z\"/></svg>
+"
+saturation = 2.0
+color_map = {
+Color(1, 0.37254903, 0.37254903, 1): Color(1, 0.47, 0.42, 1),
+Color(0.37254903, 1, 0.5921569, 1): Color(0.45, 0.95, 0.5, 1),
+Color(1, 0.8666667, 0.39607844, 1): Color(0.83, 0.78, 0.62, 1)
+}
+
+[sub_resource type="DPITexture" id="DPITexture_c5lgj"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"16\"><path fill=\"#fff\" d=\"m2 2 10 6-10 6z\"/></svg>
+"
+saturation = 2.0
+color_map = {
+Color(1, 0.37254903, 0.37254903, 1): Color(1, 0.47, 0.42, 1),
+Color(0.37254903, 1, 0.5921569, 1): Color(0.45, 0.95, 0.5, 1),
+Color(1, 0.8666667, 0.39607844, 1): Color(0.83, 0.78, 0.62, 1)
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5lgj"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o01lj"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv2sa"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khokt"]
+bg_color = Color(0.89411765, 0.15999997, 0.45490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tiq4b"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l23u"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6iue"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx5ea"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oacj3"]
+bg_color = Color(0.89411765, 0.15999997, 0.45490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_auoqo"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="Control" type="Control" unique_id=601294413]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_y6iue")
+script = ExtResource("1_hk2d6")
+float_range = 33.8
+basic_range = Vector2(4.5, 10)
+pixel_range = Vector2(10, 51)
+open_range = Vector2(0, 3)
+exponential_range = Vector2(0.01, 0.32)
+angle_range = Vector2(0, 0.785397)
+degrees_range = Vector2(147, 360)
+angle_shown_range = Vector2(-1.9000001, 3.0415888)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=625980218]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_7l23u")
+example_range = Vector2(32, 62.699997)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=18221924]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_4w63l")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1015621382]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HRangeSlider" type="Range" parent="." unique_id=1772391100]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 627.0
+offset_top = 20.0
+offset_right = 1125.0
+offset_bottom = 137.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 2
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 25.0
+exp_edit = false
+rounded = false
+allow_greater = false
+allow_lesser = false
+script = ExtResource("3_y6iue")
+value_range = Vector2(25, 39.965)
+editable = false
+always_show_handles = true
+draw_center_indicator = false
+handle_pressed_color = Color(0.91764706, 0, 0.36862746, 1)
+handle_start_icon = SubResource("DPITexture_o01lj")
+handle_start_highlight_icon = SubResource("DPITexture_o01lj")
+handle_start_disabled_icon = SubResource("DPITexture_o01lj")
+handle_end_icon = SubResource("DPITexture_c5lgj")
+handle_end_highlight_icon = SubResource("DPITexture_c5lgj")
+handle_end_disabled_icon = SubResource("DPITexture_c5lgj")
+slider_style = SubResource("StyleBoxFlat_c5lgj")
+grabber_area_style = SubResource("StyleBoxFlat_o01lj")
+grabber_area_hover_style = SubResource("StyleBoxFlat_yv2sa")
+grabber_area_pressed_style = SubResource("StyleBoxFlat_khokt")
+grabber_area_disabled_style = SubResource("StyleBoxFlat_tiq4b")
+metadata/_custom_type_script = "uid://doofp6g5otkxk"
+
+[node name="HSlider" type="HSlider" parent="." unique_id=196822544]
+layout_mode = 0
+offset_right = 487.0
+offset_bottom = 72.0
+tick_count = 10
+
+[node name="CheckBox" type="CheckBox" parent="." unique_id=1369003630]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="VRangeSlider" type="Range" parent="." unique_id=2135567097]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 46.0
+offset_top = 172.0
+offset_right = 216.0
+offset_bottom = 419.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 2
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+allow_greater = false
+allow_lesser = false
+script = ExtResource("3_7l23u")
+editable = false
+always_show_handles = true
+handle_pressed_color = Color(0.91764706, 0, 0.36862746, 1)
+handle_start_icon = ExtResource("4_cx5ea")
+handle_start_highlight_icon = ExtResource("4_cx5ea")
+handle_start_disabled_icon = ExtResource("4_cx5ea")
+handle_end_icon = ExtResource("5_c5lgj")
+handle_end_highlight_icon = ExtResource("5_c5lgj")
+handle_end_disabled_icon = ExtResource("5_c5lgj")
+slider_style = SubResource("StyleBoxFlat_7l23u")
+grabber_area_style = SubResource("StyleBoxFlat_y6iue")
+grabber_area_hover_style = SubResource("StyleBoxFlat_cx5ea")
+grabber_area_pressed_style = SubResource("StyleBoxFlat_oacj3")
+grabber_area_disabled_style = SubResource("StyleBoxFlat_auoqo")
+metadata/_custom_type_script = "uid://b5hd6r47v4w5q"
