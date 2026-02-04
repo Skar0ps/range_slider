@@ -1,8 +1,9 @@
 <div align="center">
 
-![Range Slider Header](header.svg)
+![Range Slider Header](docs/header.svg)
 
-[![Godot v4.x](https://img.shields.io/badge/Godot-v4.x-%23478cbf?logo=godot-engine&logoColor=white)](https://godotengine.org/) ![License](https://img.shields.io/badge/License-MIT-green)
+[![Godot v4.x](https://img.shields.io/badge/Godot-v4.x-%23478cbf?logo=godot-engine&logoColor=white)](https://godotengine.org/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 </div>
 
@@ -10,8 +11,7 @@
 A Godot editor plugin that provides a `RangeSlider` control for `Vector2` properties in the editor inspector when using `@export_custom(PROPERTY_HINT_RANGE, ...)`.
 This feature is a close copy of the `MinMaxPropertyEditor` present in  [ParticleProcessMaterial](https://github.com/godotengine/godot/blob/master/editor/scene/particle_process_material_editor_plugin.cpp) but not exposed in the editor, so i tried as best as i could to convert the cpp code to GDScript and make it seamlessly integrate with the editor.
 
-![Demo GIF](https://i.imgur.com/your_gif_url.gif) 
-*TODO: Replace with a GIF of the plugin in action.*
+<img src="docs/resize_bar_by_handle_drag.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle"  width="640">
 
 ## What is it for ?
 
@@ -32,7 +32,7 @@ With the plugin, you can just do this :
 ```
 
 And now you have a handy slider to edit the range !
-![RangeSlider inspector visuals resulting from the code above](first_range_slider_example.png)
+![RangeSlider inspector visuals resulting from the code above](docs/first_range_slider_example.png)
 
 ## What does it do ?
 
@@ -44,6 +44,27 @@ And now you have a handy slider to edit the range !
 - **Exponential Mode:** Supports exponential editing (for properties like `scale`).
 - **Angle Range:** Can display properties stored in radians as degrees.
 - **Customizable Appearance:** Uses exported StyleBoxes, icons, and colors for easier theme customization. Defaults to editor icons, colors, and styleboxes.
+
+## Controls 
+
+-   **Drag Handles:** Click and drag the start or end handles to adjust the min or max value.
+
+	<img src="docs/resize_bar_by_handle_drag.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle"  width="640">
+-   **Drag Bar:** Click and drag the bar between the handles to move the entire range.
+
+	<img src="docs/move_bar_by_dragging.webp" alt="Video showing a cursor moving the bar by dragging the bar"  width="640">
+-	**Drag Empty Space** Alternatively, you can also drag the empty space in the slider to move the bar relatively to the click position.
+
+	<img src="docs/move_bar_with_empty_space_drag.webp" alt="Video showing a cursor moving the bar by dragging the empty space in the slider" width="640">
+-   **Scale Range:** Hold the `Shift` key while dragging anywhere on the slider to scale the range from its center.
+
+	<img src="docs/resize_with_shift_click.webp" alt="Video showing a cursor resizing the RangeSlider by dragging a handle with shift click"  width="640">
+-   **Round to Integer:** Hold `Ctrl` (or `Cmd` on macOS) while dragging to snap to the nearest integer.
+
+	<img src="docs/resize_with_control.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle while holding Ctrl"  width="640">
+-   **Mouse Scroll:** When focused, use the mouse wheel to scroll up or down to move the range by the step value.
+
+	<img src="docs/move_bar_by_scrolling.webp" alt="Video showing a cursor moving the RangeSlider bar by scrolling on it"  width="640">
 
 ## How to Use
 
@@ -72,7 +93,7 @@ extends Node2D
 # Note: In the hint string, you must use the radian values for min/max when using radians_as_degrees.
 ```
 
-<img src="example_inspector_usage.png" alt="Actual RangeSliders in the Inspector resulting from the code above" width="640">
+<img src="docs/example_inspector_usage.png" alt="RangeSliders in the Inspector resulting from the code above" width="640">
 
 ### Editor Usage
 
@@ -100,17 +121,3 @@ Check out the godot docs for [PROPERTY_HINT_RANGE](https://docs.godotengine.org/
 	-   `hide_slider`: This keyword will prevent the plugin from activating, showing the default Godot `Vector2` editor.
 	-   `hide_control`: Same as hide_slider, the plugin will not activate.
 
-## Controls 
-
--   **Drag Handles:** Click and drag the start or end handles to adjust the min or max value.
-	<img src="docs/resize_bar_by_handle_drag.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle"  width="640">
--   **Drag Bar:** Click and drag the bar between the handles to move the entire range.
-	<img src="docs/move_bar_by_dragging.webp" alt="Video showing a cursor moving the bar by dragging the bar"  width="640">
--	**Drag Empty Space** Alternatively, you can also drag the empty space in the slider to move the bar relatively to the click position.
-	<img src="docs/move_bar_with_empty_space_drag.webp" alt="Video showing a cursor moving the bar by dragging the empty space in the slider" width="640">
--   **Scale Range:** Hold the `Shift` key while dragging anywhere on the slider to scale the range from its center.
-	<img src="docs/resize_with_shift_click.webp" alt="Video showing a cursor resizing the RangeSlider by dragging a handle with shift click"  width="640">
--   **Round to Integer:** Hold `Ctrl` (or `Cmd` on macOS) while dragging to snap to the nearest integer.
-	<img src="docs/resize_with_control.webp" alt="Video showing a cursor resizing the RangeSlider bar by dragging a handle while holding Ctrl"  width="640">
--   **Mouse Scroll:** When focused, use the mouse wheel to scroll up or down to move the range by the step value.
-	<img src="docs/move_bar_by_scrolling.webp" alt="Video showing a cursor moving the RangeSlider bar by scrolling on it"  width="640">
